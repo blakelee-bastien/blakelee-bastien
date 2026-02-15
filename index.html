@@ -23,7 +23,6 @@
       padding: 2rem;
     }
 
-    /* Animated background grid */
     .background-grid {
       position: fixed;
       inset: 0;
@@ -56,7 +55,6 @@
       box-shadow: 0 30px 80px rgba(0,0,0,0.7);
     }
 
-    /* Logo */
     .logo {
       width: 120px;
       margin: 0 auto 1rem;
@@ -146,7 +144,7 @@
   <div class="background-grid" aria-hidden="true"></div>
 
   <div class="card">
-    <!-- Logo ABOVE name -->
+    <!-- Logo -->
     <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
       <circle cx="50" cy="50" r="40" fill="#f59e0b" stroke="#000" stroke-width="2" />
       <rect x="30" y="50" width="40" height="10" fill="#000" />
@@ -198,12 +196,42 @@
       <a href="https://github.com/blakelee-bastien/Projects" target="_blank">Projects Repository</a>
     </div>
 
+    <h2>Future Projects</h2>
+
+    <div class="project-card">
+      <h3>Baseball Pitch Position Calculator</h3>
+      <p>
+        Exploring the physics of baseball pitches: calculating the ball's change in position 
+        for different pitch types, speeds, and trajectories.
+      </p>
+
+      <div id="physics-demo" style="margin-top:1rem; text-align:center;">
+        <canvas id="ballCanvas" width="300" height="150" style="background:#020617; border-radius:8px;"></canvas>
+        <div style="margin-top:0.5rem; color:#94a3b8;">
+          Ball position: <span id="ballPos">0, 0</span>
+        </div>
+      </div>
+
+      <p style="margin-top:0.5rem; color:#94a3b8;">
+        Demo shows an animated ball moving according to simple physics equations for projectile motion.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <h3>Physics Problems Compilation</h3>
+      <p>
+        Future project compiling multiple physics calculations with animation, including
+        projectile motion, pendulum swings, and inclined plane simulations.
+      </p>
+    </div>
+
     <div class="footer">
       Built with HTML, CSS, and JavaScript
     </div>
   </div>
 
   <script>
+    // Clock
     function updateClock() {
       const now = new Date();
       document.getElementById("clock").textContent =
@@ -214,9 +242,42 @@
           timeZoneName: "short"
         });
     }
-
     updateClock();
     setInterval(updateClock, 1000);
+
+    // Simple projectile motion demo
+    const canvas = document.getElementById('ballCanvas');
+    const ctx = canvas.getContext('2d');
+    const posSpan = document.getElementById('ballPos');
+
+    let t = 0; 
+    const dt = 0.05; 
+    const g = 9.8; 
+    const scale = 5; 
+
+    const currentPitch = { vx: 40, vy: 0 }; // fastball example
+
+    function drawBall(x, y) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(x, canvas.height - y, 8, 0, Math.PI*2);
+      ctx.fillStyle = '#f59e0b';
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function update() {
+      const x = currentPitch.vx * t * scale;
+      const y = (currentPitch.vy * t - 0.5 * g * t * t) * scale;
+
+      drawBall(x, y > 0 ? y : 0);
+      posSpan.textContent = `${(x/scale).toFixed(1)} m, ${(y/scale).toFixed(1)} m`;
+
+      t += dt;
+      if (y > 0) requestAnimationFrame(update);
+    }
+
+    update();
   </script>
 </body>
 </html>
