@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blakelee Bastien</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Animated background grid */
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridMove 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 1000px; }
+    }
+
+    .card {
+      background: #020617;
+      padding: 2.75rem 3rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    }
+
+    /* Logo */
+    .logo {
+      width: 120px;
+      margin: 0 auto 1rem;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(245,158,11,0.5));
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #f8fafc;
+      text-shadow: 0 0 6px rgba(248,250,252,0.15);
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #f8fafc;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      color: #e5e7eb;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: #f59e0b;
+      text-decoration: underline;
+    }
+
+    .time {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #f8fafc;
+      text-shadow: 0 0 8px rgba(56,189,248,0.5);
+    }
+
+    .project-card {
+      background: #0f172a;
+      border-radius: 1rem;
+      padding: 1.2rem 1.3rem;
+      margin-top: 1rem;
+      text-align: left;
+      border-left: 4px solid #38bdf8;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+    }
+
+    .links {
+      margin-top: 1.75rem;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+
+  <div class="card">
+    <!-- Logo ABOVE name -->
+    <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="40" fill="#f59e0b" stroke="#000" stroke-width="2" />
+      <rect x="30" y="50" width="40" height="10" fill="#000" />
+      <circle cx="50" cy="55" r="3" fill="#fff" />
+    </svg>
+
+    <h1>Blakelee Bastien</h1>
+
+    <p>
+      <a href="mailto:bastienb274@gmail.com">bastienb274@gmail.com</a>
+    </p>
+
+    <div class="time" id="clock" aria-live="polite">--:--:--</div>
+
+    <h2>About Me</h2>
+    <p>
+      I am a <strong>Computer Science major</strong> and a <strong>wrestler</strong>
+      with a strong interest in building software that connects technology
+      with athletics. I focus on data visualization, mathematical modeling,
+      and performance-oriented sports tools.
+    </p>
+
+    <h2>Current Projects</h2>
+
+    <div class="project-card">
+      <h3>Mandelbrot Set Visualizer</h3>
+      <p>
+        A computational mathematics project that visualizes the Mandelbrot set,
+        exploring complex numbers, recursion, and rendering performance.
+      </p>
+      <a href="https://github.com/blakelee-bastien/Projects/tree/main/Mandelbrot" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="project-card">
+      <h3>Wrestling Weight Cut Planning Tool</h3>
+      <p>
+        A data-driven planning tool designed to help wrestlers manage weight
+        cuts safely and efficiently while prioritizing performance and health.
+      </p>
+      <a href="https://github.com/blakelee-bastien/Projects/tree/main/Wrestling" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/blakelee-bastien" target="_blank">GitHub</a> ·
+      <a href="https://github.com/blakelee-bastien/Projects" target="_blank">Projects Repository</a>
+    </div>
+
+    <div class="footer">
+      Built with HTML, CSS, and JavaScript
+    </div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent =
+        now.toLocaleString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZoneName: "short"
+        });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
