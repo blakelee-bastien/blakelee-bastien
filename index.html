@@ -200,21 +200,6 @@
 
     <div class="project-card">
       <h3>Baseball Pitch Position Calculator</h3>
-      <p>
-        Exploring the physics of baseball pitches: calculating the ball's change in position 
-        for different pitch types, speeds, and trajectories.
-      </p>
-
-      <div id="physics-demo" style="margin-top:1rem; text-align:center;">
-        <canvas id="ballCanvas" width="300" height="150" style="background:#020617; border-radius:8px;"></canvas>
-        <div style="margin-top:0.5rem; color:#94a3b8;">
-          Ball position: <span id="ballPos">0, 0</span>
-        </div>
-      </div>
-
-      <p style="margin-top:0.5rem; color:#94a3b8;">
-        Demo shows an animated ball moving according to simple physics equations for projectile motion.
-      </p>
     </div>
 
     <div class="project-card">
@@ -244,40 +229,6 @@
     }
     updateClock();
     setInterval(updateClock, 1000);
-
-    // Simple projectile motion demo
-    const canvas = document.getElementById('ballCanvas');
-    const ctx = canvas.getContext('2d');
-    const posSpan = document.getElementById('ballPos');
-
-    let t = 0; 
-    const dt = 0.05; 
-    const g = 9.8; 
-    const scale = 5; 
-
-    const currentPitch = { vx: 40, vy: 0 }; // fastball example
-
-    function drawBall(x, y) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      ctx.arc(x, canvas.height - y, 8, 0, Math.PI*2);
-      ctx.fillStyle = '#f59e0b';
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    function update() {
-      const x = currentPitch.vx * t * scale;
-      const y = (currentPitch.vy * t - 0.5 * g * t * t) * scale;
-
-      drawBall(x, y > 0 ? y : 0);
-      posSpan.textContent = `${(x/scale).toFixed(1)} m, ${(y/scale).toFixed(1)} m`;
-
-      t += dt;
-      if (y > 0) requestAnimationFrame(update);
-    }
-
-    update();
   </script>
 </body>
 </html>
